@@ -1,5 +1,12 @@
 <template>
   <div id="app">
+    <h1 class="title">Monster Slayer</h1>
+    <div class="text-center">
+        <v-avatar>
+        <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
+        </v-avatar>
+    </div>
+    <v-divider></v-divider>
     <section class="row">
         <div class="small-6 columns">
             <h1 class="text-center">YOU</h1>
@@ -26,15 +33,15 @@
     </section>
     <section class="row controls" v-if="!gameIsRunning">
         <div class="small-12 columns">
-            <button id="start-game" @click="startGame">START NEW GAME</button>
+            <v-btn id="start-game" @click="startGame">START NEW GAME</v-btn>
         </div>
     </section>
     <section class="row controls" v-else>
         <div class="small-12 columns">
-            <button id="attack" @click="attack">ATTACK</button>
-            <button id="special-attack" @click="specialAttack">SPECIAL ATTACK</button>
-            <button id="heal" @click="heal">HEAL</button>
-            <button id="give-up" @click="giveUp">GIVE UP</button>
+            <v-btn id="attack" @click="attack">ATTACK</v-btn>
+            <v-btn id="special-attack" @click="specialAttack">SPECIAL ATTACK</v-btn>
+            <v-btn id="heal" @click="heal">HEAL</v-btn>
+            <v-btn id="give-up" @click="giveUp">GIVE UP</v-btn>
         </div>
     </section>
     <section class="row log" v-if="turns.length > 0">
@@ -48,6 +55,28 @@
             </ul>
         </div>
     </section>
+    <div class="text-center">
+    <v-bottom-sheet v-model="sheet">
+      <template v-slot:activator="{ on }">
+        <v-btn
+          color="purple"
+          dark
+          v-on="on"
+        >
+          Learn How To Play
+        </v-btn>
+      </template>
+      <v-sheet class="text-center" height="200px">
+        <v-btn
+          class="mt-6"
+          text
+          color="red"
+          @click="sheet = !sheet"
+        >close</v-btn>
+        <div>Here go the rules on how to play the game.</div>
+      </v-sheet>
+    </v-bottom-sheet>
+  </div>
 </div>
 </template>
 
@@ -67,6 +96,7 @@ export default {
         playerHealth: 100,
         monsterHealth: 100,
         gameIsRunning: false,
+        sheet: false,
         turns: []
       }
     },
@@ -159,7 +189,15 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  margin-left: 100px;
+}
+
+.title {
+    text-align: center;
+    color: green;
+}
+
+.row {
+    margin: auto;
 }
 
 .text-center {

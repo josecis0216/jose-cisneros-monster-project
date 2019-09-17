@@ -27,3 +27,9 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### used v-btn instead of the button tag
+### Was able to insert a divider line between the avatar and the game
+### Added bottom sheet to explain the rules of the game
+### Added an avatar at the top of the page
+### Put a title at the top
